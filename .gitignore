@@ -1,0 +1,54 @@
+## Ignore arquivos de build
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+
+## Ignore arquivos gerados por usuário
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Arquivos de log e debug
+*.log
+
+## Configurações específicas do Visual Studio
+.vs/
+.vscode/
+*.dbmdl
+
+## Arquivos temporários
+*.tmp
+*.bak
+*.swp
+
+## Ignore pacotes NuGet baixados
+packages/
+*.nupkg
+project.lock.json
+project.assets.json
+
+## Configurações de build locais
+*.csproj.user
+*.sln.ide
+
+## Diretórios do ReSharper, Rider, etc.
+.idea/
+_ReSharper*/
+*.DotSettings.user
+
+## Configuração de publish
+publish/
+
+## Arquivos de cache e analytics
+*.cache
+*.mdb
+
+## Auto gerados por designers
+*.Designer.cs
+
+## Arquivos de senhas ou chaves (evite deixar versionado)
+secrets.json
+*.key
