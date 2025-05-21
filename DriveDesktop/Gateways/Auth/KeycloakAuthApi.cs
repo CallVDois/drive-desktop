@@ -33,7 +33,6 @@ namespace DriveDesktop.Gateways.Auth
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"/realms/{_realm}/protocol/openid-connect/token");
             request.Headers.Add("Accept", "application/json");
-            request.Headers.Add("Accept-Encoding", "gzip, deflate, br");
             request.Content = new FormUrlEncodedContent(new Dictionary<string, string>
                         {
                             { "grant_type", "password" },

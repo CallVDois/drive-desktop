@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DriveDesktop.Gateways.Auth
 {
-    internal interface IAuthApi
+    public interface IAuthApi
     {
 
         Task<Token> FetchToken(UserCredentials credentials);

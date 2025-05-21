@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DriveDesktop.Gateways.Auth.Model
 {
-    internal class UserCredentials
+    public class UserCredentials
     {
         public string Username { get; set; } = string.Empty;
 

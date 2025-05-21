@@ -14,6 +14,7 @@
         private Token _token = new();
         private readonly DateTime _createdAt = DateTime.UtcNow;
         private DateTime _refreshedAt = DateTime.UtcNow;
+        private DateTime _expiresAt = DateTime.UtcNow;
         private bool _expired = false;
 
         internal TokenSession(ITokenFetcher fetcher)
@@ -21,7 +22,7 @@
             _fetcher = fetcher;
             _fetchToken = _fetcher.FetchToken();
             _refreshToken = _fetcher.RefreshToken(_token.RefreshToken);
-            FetchTokenAsync(_fetchToken);
+            FetchTokenAsync(_fetchToken).RunSynchronously();
         }
 
         public Guid Id => _id;
@@ -50,7 +51,7 @@
 
         public bool IsReady => _isReady;
 
-        public DateTime ExpiresAt => DateTime.UtcNow.AddSeconds(Token.ExpiresIn);
+        public DateTime ExpiresAt => _expiresAt;
 
         public void Close()
         {
@@ -74,7 +75,7 @@
             _fetcher = null!;
         }
 
-        private async void FetchTokenAsync(Task<Token> fetchTask)
+        private async Task FetchTokenAsync(Task<Token> fetchTask)
         {
             try
             {
@@ -86,6 +87,7 @@
                     _mutex.Release();
                     _isReady = true;
                     _refreshedAt = DateTime.UtcNow;
+                    _expiresAt = DateTime.UtcNow.AddSeconds(token.ExpiresIn);
                 }
                 else
                 {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DriveDesktop.Authentication
 {
-    public class MemoryTokenProvider
+    public class MemoryTokenProvider : ITokenProvider
     {
         private ITokenSession _session;
 
@@ -26,7 +26,7 @@ namespace DriveDesktop.Authentication
             return this._session.Token.AccessToken;
         }
 
-        public void Close()
+        public void CloseSession()
         {
             this._session.Close();
         }

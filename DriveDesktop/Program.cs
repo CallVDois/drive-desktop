@@ -9,10 +9,12 @@ namespace DriveDesktop
         {
             ApplicationConfiguration.Initialize();
 
-            var mainForm = new MainForm();
+            var authApi = new Gateways.Auth.KeycloakAuthApi("", "", "");
+
+            var mainForm = new MainForm(authApi);
             mainForm.LoadControl(new Views.Controls.FolderViewControl(new Models.Folder()));
 
-            Application.Run(new MainForm());
+            Application.Run(mainForm);
         }
     }
 }
